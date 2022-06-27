@@ -17,16 +17,16 @@ FPS = 60
 
 black = (0, 0, 0)
 white = (255, 255, 255)
-tile_black = (35, 28, 19)
-tile_white = (226, 191, 128)
-bg_grey = (40, 36, 44)
+tile_black = (119, 128, 145)
+tile_white = (25, 255, 255)
+bg_grey = (48, 44, 52)
 
 
 board = pygame.Surface((cellSize * 8, cellSize * 8))
 pygame.Surface.fill(board, tile_black)
 
 win.fill(bg_grey)
-pygame.draw.rect(win, black, pygame.Rect(75, 5, cellSize * 8 + 10, cellSize * 8 + 10))
+pygame.draw.rect(win, black, pygame.Rect(73, 3, cellSize * 8 + 14, cellSize * 8 + 14))
 
 #Function for drawing the chess board
 def draw_board():
