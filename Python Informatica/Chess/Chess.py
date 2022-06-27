@@ -15,12 +15,12 @@ FPS = 60
 
 bg_grey = (40, 36, 44)
 
-Blue_Block = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
-Blue_Block = pygame.transform.scale(Blue_Block, (80,80))
+test_block = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
+test_block = pygame.transform.scale(test_block, (80,80))
 
 def draw_window():
     win.fill(bg_grey)
-    win.blit(Blue_Block, (150, 150))
+    win.blit(test_block, (150, 150))
     pygame.display.update()
 
 def main():
