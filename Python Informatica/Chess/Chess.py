@@ -5,6 +5,8 @@ import pygame
 import time
 import os
 
+pygame.init()
+
 WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chess")
