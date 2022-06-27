@@ -1,8 +1,6 @@
 #Thomas Jansen
 #thomas@ronmix.com
 
-#Test
-
 import turtle
 
 t = turtle.Turtle()
