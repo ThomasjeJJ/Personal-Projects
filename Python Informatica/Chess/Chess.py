@@ -11,16 +11,33 @@ WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chess")
 
+cellSize = 80
 FPS = 60
 
+black = (0, 0, 0)
+white = (255, 255, 255)
 bg_grey = (40, 36, 44)
 
-test_block = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
-test_block = pygame.transform.scale(test_block, (80,80))
+
+board = pygame.Surface((cellSize * 8, cellSize * 8))
+#Function for drawing the chess board
+def draw_board():
+    #loop for moving from row to row
+    for x in range (0, 8, 2):
+        #loop for the moving in the row
+        for y in range (0, 8, 2):
+            pygame.draw.rect(board, white, (x*cellSize, y*cellSize, 80, 80))
+    
+    for x in range (1, 8, 2):
+        #loop for the moving in the row
+        for y in range (1, 8, 2):
+            pygame.draw.rect(board, white, (x*cellSize, y*cellSize, 80, 80))
+
 
 def draw_window():
     win.fill(bg_grey)
-    win.blit(test_block, (150, 150))
+    win.blit(board, (80, 10))
+    
     pygame.display.update()
 
 def main():
@@ -35,4 +52,5 @@ def main():
         draw_window()
     pygame.quit()
 
+draw_board()
 main()
