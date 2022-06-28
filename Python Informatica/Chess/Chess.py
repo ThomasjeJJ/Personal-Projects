@@ -61,15 +61,14 @@ def draw_board():
 
 #Function for making the list of coordinates needed for the right placements
 def list_maker():
-    for x in range(0, 640, 80):
-        for y in range(0, 640, 80):
-            coords.append((80+x, 10+y))
-    print(coords)
+    for y in range(0, 640, 80):
+        for x in range(0, 640, 80):
+            coords.append((90+x, 20+y))
 
 #function for displaying everything
 def draw_window():
     win.blit(board, (80, 10))
-    win.blit(Bischop_B, (90,20))
+    win.blit(Bischop_B, (coords[63]))
 
     pygame.display.update()
 
