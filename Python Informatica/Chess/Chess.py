@@ -2,6 +2,8 @@
 #thomas@ronmix.com
 
 from cmath import rect
+from pydoc import cli
+from tkinter.messagebox import YES
 import pygame
 import time
 import os
@@ -42,6 +44,12 @@ FPS = 60
 p = 0
 lst = []
 First_Bischop_B = 0
+x = 0
+y = 0
+
+clicked_square_x = 0
+clicked_square_y = 0
+
 
 
 # Colors
@@ -77,6 +85,28 @@ def draw_board():
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
 
 
+def Bishop_B_Clicked ():
+    k = 0
+    Clicked = 0
+    print(coords[k])
+
+    while Clicked == 0:
+        if coords[k][0] < x:
+            k += 1
+        else:
+            Clicked = 1
+            f = coords[k][0]
+            l = coords[k+1][0]
+            n = x - f
+            m = l - x
+            if n >= m:
+                clicked_square_x = k
+            else:
+                clicked_square_x = k + 1
+        print (coords[k])
+
+                
+            
 
 
 
@@ -84,16 +114,19 @@ def draw_board():
 def draw_window():
     global First_Bischop_B
     win.blit(board, (80, 10))
+    
     if First_Bischop_B == 0:
         lst.append(win.blit(Bischop_B, (coords[p])))
         First_Bischop_B = 1
     lst[0] = win.blit(Bischop_B, (coords[p]))
-    
 
     pygame.display.update()
 
 def main():
-    global p
+    global p, x, y
+
+    Clickerd_Bishop_B = 0
+
     #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
     run = True
@@ -103,12 +136,18 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                     # Set the x, y postions of the mouse click
                     x, y = event.pos
                     if any(rect.collidepoint(x, y) for rect in lst):
-                        print('clicked on image')
-                        p += 1
+                        # wacht tot de volgende click pas is gedaan maar ik moet nu echt sck gaan leren!
+                        if event.type == pygame.MOUSEBUTTONUP:
+                            pygame.mouse.get_pos(x, y)
+                            Bishop_B_Clicked()
+                        
+                        
+
+
         draw_window()
 
     pygame.quit()
