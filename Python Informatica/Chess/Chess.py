@@ -8,18 +8,20 @@ import os
 
 pygame.init()
 
-
 WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chess")
 
 cellSize = 80
 FPS = 60
+coords = []
 
+
+# Colors
 black = (0, 0, 0)
 white = (255, 255, 255)
-tile_black = (119, 128, 145)
-tile_white = (25, 255, 255)
+tile_black = (128, 0, 0)
+tile_white = (255, 255, 255)
 bg_grey = (48, 44, 52)
 
 
@@ -42,6 +44,8 @@ def draw_board():
         for y in range (1, 8, 2):
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
 
+def list_maker():
+    coords.appends
 
 def draw_window():
     win.blit(board, (80, 10))
@@ -49,6 +53,7 @@ def draw_window():
     pygame.display.update()
 
 def main():
+    #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
     run = True
     while run:
