@@ -24,6 +24,20 @@ tile_black = (128, 0, 0)
 tile_white = (255, 255, 255)
 bg_grey = (48, 44, 52)
 
+#Chess pieces
+Bischop_B = pygame.image.load(os.path.join("Chess_Pieces","Bischop_B.png"))
+Bischop_W = pygame.image.load(os.path.join("Chess_Pieces","Bischop_W.png"))
+Horse_B = pygame.image.load(os.path.join("Chess_Pieces","Horse_B.png"))
+Horse_W = pygame.image.load(os.path.join("Chess_Pieces","Horse_W.png"))
+King_B = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
+King_W = pygame.image.load(os.path.join("Chess_Pieces","King_W.png"))
+Pawn_B = pygame.image.load(os.path.join("Chess_Pieces","Pawn_B.png"))
+Pawn_W = pygame.image.load(os.path.join("Chess_Pieces","Pawn_W.png"))
+Queen_B = pygame.image.load(os.path.join("Chess_Pieces","Queen_B.png"))
+Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
+Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
+Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
+
 
 board = pygame.Surface((cellSize * 8, cellSize * 8))
 pygame.Surface.fill(board, tile_black)
@@ -45,10 +59,14 @@ def draw_board():
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
 
 def list_maker():
-    coords.appends
+    for x in range(0, 640, 80):
+        for y in range(0, 640, 80):
+            coords.append((80+x, 10+y))
+    print(coords)
 
 def draw_window():
     win.blit(board, (80, 10))
+    win.blit(Bischop_B, (90,20))
 
     pygame.display.update()
 
@@ -65,5 +83,6 @@ def main():
         draw_window()
     pygame.quit()
 
+list_maker()
 draw_board()
 main()
