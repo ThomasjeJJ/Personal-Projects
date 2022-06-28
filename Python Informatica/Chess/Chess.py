@@ -14,19 +14,6 @@ WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chess")
 
-#variables
-cellSize = 80
-FPS = 60
-coords = []
-
-
-# Colors
-black = (0, 0, 0)
-white = (255, 255, 255)
-tile_black = (128, 0, 0)
-tile_white = (255, 255, 255)
-bg_grey = (48, 44, 52)
-
 #Chess pieces
 Bischop_B = pygame.image.load(os.path.join("Chess_Pieces","Bischop_B.png"))
 Bischop_W = pygame.image.load(os.path.join("Chess_Pieces","Bischop_W.png"))
@@ -40,6 +27,31 @@ Queen_B = pygame.image.load(os.path.join("Chess_Pieces","Queen_B.png"))
 Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
 Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
+
+coords = []
+#Function for making the list of coordinates needed for the right placements
+def list_maker():
+    for y in range(0, 640, 80):
+        for x in range(0, 640, 80):
+            coords.append((90+x, 20+y))
+list_maker()
+
+#variables
+cellSize = 80
+FPS = 60
+p = 0
+lst = []
+First_Bischop_B = 0
+
+
+# Colors
+black = (0, 0, 0)
+white = (255, 255, 255)
+tile_black = (128, 0, 0)
+tile_white = (255, 255, 255)
+bg_grey = (48, 44, 52)
+
+
 
 #makes a surface so I can call the whole board easy
 board = pygame.Surface((cellSize * 8, cellSize * 8))
@@ -65,22 +77,23 @@ def draw_board():
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
 
 
-#Function for making the list of coordinates needed for the right placements
-def list_maker():
-    for y in range(0, 640, 80):
-        for x in range(0, 640, 80):
-            coords.append((90+x, 20+y))
 
 
 
 #function for displaying everything
 def draw_window():
+    global First_Bischop_B
     win.blit(board, (80, 10))
-    win.blit(Bischop_B, (coords[62]))
+    if First_Bischop_B == 0:
+        lst.append(win.blit(Bischop_B, (coords[p])))
+        fFirst_Bischop_B = 1
+    lst[0] = win.blit(Bischop_B, (coords[p]))
+    
 
     pygame.display.update()
 
 def main():
+    global p
     #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
     run = True
@@ -91,14 +104,17 @@ def main():
                 run = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                # Set the x, y postions of the mouse click
-                x, y = event.pos
-                if Bischop_B.get_rect().collidepoint(x, y):
-                    print('clicked on image')
+                    # Set the x, y postions of the mouse click
+                    x, y = event.pos
+                    if any(rect.collidepoint(x, y) for rect in lst):
+                        print('clicked on image')
+                        p += 1
         draw_window()
+
     pygame.quit()
 
 
-list_maker()
+
+
 draw_board()
 main()
