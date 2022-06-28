@@ -71,10 +71,12 @@ def list_maker():
         for x in range(0, 640, 80):
             coords.append((90+x, 20+y))
 
+
+
 #function for displaying everything
 def draw_window():
     win.blit(board, (80, 10))
-    win.blit(Bischop_B, (coords[63]))
+    win.blit(Bischop_B, (coords[62]))
 
     pygame.display.update()
 
@@ -87,7 +89,12 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-    
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Set the x, y postions of the mouse click
+                x, y = event.pos
+                if Bischop_B.get_rect().collidepoint(x, y):
+                    print('clicked on image')
         draw_window()
     pygame.quit()
 
