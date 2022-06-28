@@ -6,12 +6,15 @@ import pygame
 import time
 import os
 
+#initializes every module
 pygame.init()
 
+#makes the screen and makes it have the right properties
 WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chess")
 
+#variables
 cellSize = 80
 FPS = 60
 coords = []
@@ -38,11 +41,14 @@ Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
 Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
-
+#makes a surface so I can call the whole board easy
 board = pygame.Surface((cellSize * 8, cellSize * 8))
 pygame.Surface.fill(board, tile_black)
 
+#Colors the background
 win.fill(bg_grey)
+
+#A nice border around the board
 pygame.draw.rect(win, black, pygame.Rect(73, 3, cellSize * 8 + 14, cellSize * 8 + 14))
 
 #Function for drawing the chess board
@@ -84,6 +90,7 @@ def main():
     
         draw_window()
     pygame.quit()
+
 
 list_maker()
 draw_board()
