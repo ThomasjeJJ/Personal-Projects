@@ -58,12 +58,15 @@ def draw_board():
         for y in range (1, 8, 2):
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
 
+
+#Function for making the list of coordinates needed for the right placements
 def list_maker():
     for x in range(0, 640, 80):
         for y in range(0, 640, 80):
             coords.append((80+x, 10+y))
     print(coords)
 
+#function for displaying everything
 def draw_window():
     win.blit(board, (80, 10))
     win.blit(Bischop_B, (90,20))
