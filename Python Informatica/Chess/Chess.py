@@ -7,7 +7,7 @@ import time
 import os
 
 pygame.init()
-#hallo enlil
+
 
 WIDTH, HEIGHT = 800, 660
 win = pygame.display.set_mode((WIDTH, HEIGHT))
