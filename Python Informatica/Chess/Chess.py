@@ -86,7 +86,7 @@ def draw_window():
     win.blit(board, (80, 10))
     if First_Bischop_B == 0:
         lst.append(win.blit(Bischop_B, (coords[p])))
-        fFirst_Bischop_B = 1
+        First_Bischop_B = 1
     lst[0] = win.blit(Bischop_B, (coords[p]))
     
 
