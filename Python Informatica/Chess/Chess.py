@@ -31,11 +31,15 @@ Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
 coords = []
+coordsX = [90, 170, 250, 330, 410, 490, 570, 650]
+coordsY = [20, 100, 180, 260, 340, 420, 500, 580]
 #Function for making the list of coordinates needed for the right placements
 def list_maker():
     for y in range(0, 640, 80):
         for x in range(0, 640, 80):
             coords.append((90+x, 20+y))
+
+
 list_maker()
 
 #variables
@@ -46,6 +50,7 @@ lst = []
 First_Bischop_B = 0
 x = 0
 y = 0
+aantalKliks = 0
 
 clicked_square_x = 0
 clicked_square_y = 0
@@ -87,23 +92,41 @@ def draw_board():
 
 def Bishop_B_Clicked ():
     k = 0
-    Clicked = 0
-    print(coords[k])
+    ClickedX = 0
+    ClickedY = 0
 
-    while Clicked == 0:
-        if coords[k][0] < x:
+    while ClickedX == 0:
+        if coordsX[k] < x:
             k += 1
         else:
-            Clicked = 1
-            f = coords[k][0]
-            l = coords[k+1][0]
+            ClickedX = 1
+            f = coordsX[k-1]
+            l = coordsX[k]
             n = x - f
             m = l - x
             if n >= m:
-                clicked_square_x = k
+                clicked_square_x = k -1
             else:
-                clicked_square_x = k + 1
-        print (coords[k])
+                clicked_square_x = k
+            print (coordsX[clicked_square_x])
+    
+    while ClickedY == 0:
+        if coordsY[k] < x:
+            k += 1
+        else:
+            ClickedY = 1
+            f = coordsY[k-1]
+            l = coordsY[k]
+            n = x - f
+            m = l - x
+            if n >= m:
+                clicked_square_y = k -1
+            else:
+                clicked_square_y = k
+            print (coordsX[clicked_square_y])
+            win.blit(Bischop_B, (350,350))
+    
+    
 
                 
             
@@ -123,9 +146,9 @@ def draw_window():
     pygame.display.update()
 
 def main():
-    global p, x, y
+    global p, x, y, aantalKliks
 
-    Clickerd_Bishop_B = 0
+    #Clickerd_Bishop_B = 0
 
     #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
@@ -137,16 +160,16 @@ def main():
                 run = False
 
             if event.type == pygame.MOUSEBUTTONUP:
-                    # Set the x, y postions of the mouse click
-                    x, y = event.pos
-                    if any(rect.collidepoint(x, y) for rect in lst):
-                        # wacht tot de volgende click pas is gedaan maar ik moet nu echt sck gaan leren!
-                        if event.type == pygame.MOUSEBUTTONUP:
-                            pygame.mouse.get_pos(x, y)
-                            Bishop_B_Clicked()
-                        
-                        
-
+                # Set the x, y postions of the mouse click
+                x, y = event.pos
+                if any(rect.collidepoint(x, y) for rect in lst):
+                    print("gecklickt")
+                    aantalKliks += 1
+                elif aantalKliks == 1:
+                    aantalKliks = 0
+                    print("2e")
+                    Bishop_B_Clicked()
+                            
 
         draw_window()
 
