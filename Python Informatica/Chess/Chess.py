@@ -58,11 +58,18 @@ clicked_square_x, clicked_square_y = 0, 0
 
 lst_Bischop_B_1 = []
 lst_Bischop_B_2 = []
+lst_Bischop_W_1 = []
+lst_Bischop_W_2 = []
+
+
 First_Bischop_B_1, First_Bischop_B_2 = 0, 0
+First_Bischop_W_1, First_Bischop_W_2 = 0, 0
 
 
 Bischop_B_1_x, Bischop_B_1_y = 0, 0
 Bischop_B_2_x, Bischop_B_2_y = 0, 0
+Bischop_W_1_x, Bischop_W_1_y = 0, 0
+Bischop_W_2_x, Bischop_W_2_y = 0, 0
 
 
 # Colors
@@ -111,13 +118,11 @@ def Bishop_B_1_Clicked ():
             k += 1
         else:
             ClickedX = 1
-            f = coordsX[k-1]
-            l = coordsX[k]
-            if x - f <= l - x:
-                clicked_square_x = k -1
+            if x - coordsX[k-1] <= coordsX[k] - x:
+                clicked_square_x = coordsX[k-1]
             else:
-                clicked_square_x = k
-            print (coordsX[clicked_square_x])
+                clicked_square_x = coordsX[k]
+
     
     while ClickedY == 0:
         if coordsY[g] < y:
@@ -125,10 +130,11 @@ def Bishop_B_1_Clicked ():
         else:
             ClickedY = 1
             if y - coordsY[g-1] <= coordsY[g] - y:
-                clicked_square_y = g - 1
+                clicked_square_y = coordsY[g-1]
             else:
-                clicked_square_y = g
-            print (coordsY[clicked_square_y])
+                clicked_square_y = coordsY[g]
+        
+
     First_Bischop_B_1 = 2
     move_made = 1
     draw_board()
@@ -145,13 +151,10 @@ def Bishop_B_2_Clicked ():
             k += 1
         else:
             ClickedX = 1
-            f = coordsX[k-1]
-            l = coordsX[k]
-            if x - f <= l - x:
-                clicked_square_x = k -1
+            if x - coordsX[k-1] <= coordsX[k] - x:
+                clicked_square_x = coordsX[k-1]
             else:
-                clicked_square_x = k
-            print (f"bisch 2{coordsX[clicked_square_x]}")
+                clicked_square_x = coordsX[k]
     
     while ClickedY == 0:
         if coordsY[g] < y:
@@ -159,19 +162,85 @@ def Bishop_B_2_Clicked ():
         else:
             ClickedY = 1
             if y - coordsY[g-1] <= coordsY[g] - y:
-                clicked_square_y = g - 1
+                clicked_square_y = coordsY[g-1]
             else:
-                clicked_square_y = g
-            print (coordsY[clicked_square_y])
+                clicked_square_y = coordsY[g]
     First_Bischop_B_2 = 2
     move_made = 1
     draw_board()   
 
+def Bishop_W_1_Clicked ():
+    global First_Bischop_W_1, clicked_square_x, clicked_square_y, move_made
+    k = 0
+    g = 0
+    ClickedX = 0
+    ClickedY = 0
 
+    while ClickedX == 0:
+        if coordsX[k] < x:
+            k += 1
+        else:
+            ClickedX = 1
+            if x - coordsX[k-1] <= coordsX[k] - x:
+                clicked_square_x = coordsX[k-1]
+            else:
+                clicked_square_x = coordsX[k]
+
+    
+    while ClickedY == 0:
+        if coordsY[g] < y:
+            g += 1
+        else:
+            ClickedY = 1
+            if y - coordsY[g-1] <= coordsY[g] - y:
+                clicked_square_y = coordsY[g-1]
+            else:
+                clicked_square_y = coordsY[g]
+        
+
+    First_Bischop_W_1 = 2
+    move_made = 1
+    draw_board()
+
+def Bishop_W_2_Clicked ():
+    global First_Bischop_W_2, clicked_square_x, clicked_square_y, move_made
+    k = 0
+    g = 0
+    ClickedX = 0
+    ClickedY = 0
+
+    while ClickedX == 0:
+        if coordsX[k] < x:
+            k += 1
+        else:
+            ClickedX = 1
+            if x - coordsX[k-1] <= coordsX[k] - x:
+                clicked_square_x = coordsX[k-1]
+            else:
+                clicked_square_x = coordsX[k]
+
+    
+    while ClickedY == 0:
+        if coordsY[g] < y:
+            g += 1
+        else:
+            ClickedY = 1
+            if y - coordsY[g-1] <= coordsY[g] - y:
+                clicked_square_y = coordsY[g-1]
+            else:
+                clicked_square_y = coordsY[g]
+        
+
+    First_Bischop_W_2 = 2
+    move_made = 1
+    draw_board()
 
 #function for displaying everything
 def draw_window():
-    global First_Bischop_B_1, First_Bischop_B_2, clicked_square_x, clicked_square_y, move_made, Bischop_B_1_x, Bischop_B_1_y, Bischop_B_2_x, Bischop_B_2_y
+    global clicked_square_x, clicked_square_y, move_made
+    global Bischop_B_1_x, Bischop_B_1_y, Bischop_B_2_x, Bischop_B_2_y, First_Bischop_B_1, First_Bischop_B_2
+    global Bischop_W_1_x, Bischop_W_1_y, Bischop_W_2_x, Bischop_W_2_y, First_Bischop_W_1, First_Bischop_W_2
+
 
     if move_made == 1:
         if First_Bischop_B_1 == 3:
@@ -180,8 +249,13 @@ def draw_window():
         if First_Bischop_B_2 == 3:
             win.blit(Bischop_B, (Bischop_B_2_x, Bischop_B_2_y))
 
+        if First_Bischop_W_1 == 3:
+            win.blit(Bischop_W, (Bischop_W_1_x, Bischop_W_1_y))
+        
+        if First_Bischop_W_2 == 3:
+            win.blit(Bischop_W, (Bischop_W_2_x, Bischop_W_2_y))
 
-        move_made = 0
+    move_made = 0
 
 
     if First_Bischop_B_1 == 0:
@@ -189,9 +263,10 @@ def draw_window():
         Bischop_B_1_x, Bischop_B_1_y = coords[2][0], coords[2][1]
     
     if First_Bischop_B_1 == 2:
-        lst_Bischop_B_1[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
+        lst_Bischop_B_1[0] = win.blit(Bischop_B, (clicked_square_x, clicked_square_y))
+        print(clicked_square_x, clicked_square_y)
         Bischop_B_1_x, Bischop_B_1_y = clicked_square_x, clicked_square_y
-        First_Bischop_B_1 = 3
+
 
 
     if First_Bischop_B_2 == 0:
@@ -199,11 +274,33 @@ def draw_window():
         Bischop_B_2_x, Bischop_B_2_y = coords[5][0], coords[5][1]
 
     if First_Bischop_B_2 == 2:
-        lst_Bischop_B_2[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
+        lst_Bischop_B_2[0] = win.blit(Bischop_B, (clicked_square_x, clicked_square_y))
         Bischop_B_2_x, Bischop_B_2_y = clicked_square_x, clicked_square_y
-        First_Bischop_B_2 = 3
 
+    #---------------------
+    if First_Bischop_W_1 == 0:
+        lst_Bischop_W_1.append(win.blit(Bischop_W, (coords[58])))
+        Bischop_W_1_x, Bischop_W_1_y = coords[58][0], coords[58][1]
     
+    if First_Bischop_W_1 == 2:
+        lst_Bischop_W_1[0] = win.blit(Bischop_W, (clicked_square_x, clicked_square_y))
+        print(clicked_square_x, clicked_square_y)
+        Bischop_W_1_x, Bischop_W_1_y = clicked_square_x, clicked_square_y
+
+
+
+    if First_Bischop_W_2 == 0:
+        lst_Bischop_W_2.append(win.blit(Bischop_W, (coords[61])))
+        Bischop_W_2_x, Bischop_W_2_y = coords[61][0], coords[61][1]
+
+    if First_Bischop_W_2 == 2:
+        lst_Bischop_W_2[0] = win.blit(Bischop_W, (clicked_square_x, clicked_square_y))
+        Bischop_W_2_x, Bischop_W_2_y = clicked_square_x, clicked_square_y
+
+    First_Bischop_B_1 = 3
+    First_Bischop_B_2 = 3
+    First_Bischop_W_1 = 3
+    First_Bischop_W_2 = 3
 
     pygame.display.update()
 
@@ -212,6 +309,8 @@ def main():
 
     aantalKliks_B_1 = 0
     aantalKliks_B_2 = 0
+    aantalKliks_W_1 = 0
+    aantalKliks_W_2 = 0
 
     #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
@@ -238,7 +337,20 @@ def main():
                 elif aantalKliks_B_2 == 1:
                     aantalKliks_B_2 = 0
                     Bishop_B_2_Clicked()
-                            
+#----------------
+                if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_1):
+                    aantalKliks_W_1 += 1
+                    print("Bisch 1")
+                elif aantalKliks_W_1 == 1:
+                    aantalKliks_W_1 = 0
+                    Bishop_W_1_Clicked()
+
+                if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_2):
+                    aantalKliks_W_2 += 1
+                    print("Bisch 2")
+                elif aantalKliks_W_2 == 1:
+                    aantalKliks_W_2 = 0
+                    Bishop_W_2_Clicked()       
 
         draw_window()
 
