@@ -3,6 +3,7 @@
 
 from cmath import rect
 from pydoc import cli
+from shutil import move
 from tkinter.messagebox import YES
 import pygame
 import time
@@ -46,17 +47,22 @@ list_maker()
 #variables
 cellSize = 80
 FPS = 60
-lst_Bischop_B_1 = []
-lst_Bischop_B_2 = []
-First_Bischop_B_1 = 0
-First_Bischop_B_2 = 0
 x = 0
 y = 0
-aantalKliks = 0
 
-clicked_square_x = 0
-clicked_square_y = 0
 
+move_made = 0
+
+clicked_square_x, clicked_square_y = 0, 0
+
+
+lst_Bischop_B_1 = []
+lst_Bischop_B_2 = []
+First_Bischop_B_1, First_Bischop_B_2 = 0, 0
+
+
+Bischop_B_1_x, Bischop_B_1_y = 0, 0
+Bischop_B_2_x, Bischop_B_2_y = 0, 0
 
 
 # Colors
@@ -94,8 +100,7 @@ def draw_board():
 
 
 def Bishop_B_1_Clicked ():
-    global First_Bischop_B_1, clicked_square_x, clicked_square_y
-    draw_board()
+    global First_Bischop_B_1, clicked_square_x, clicked_square_y, move_made
     k = 0
     g = 0
     ClickedX = 0
@@ -119,50 +124,94 @@ def Bishop_B_1_Clicked ():
             g += 1
         else:
             ClickedY = 1
-            f = coordsY[g-1]
-            l = coordsY[g]
-            if y - f <= l - y:
+            if y - coordsY[g-1] <= coordsY[g] - y:
                 clicked_square_y = g - 1
             else:
                 clicked_square_y = g
             print (coordsY[clicked_square_y])
     First_Bischop_B_1 = 2
+    move_made = 1
+    draw_board()
     
-    
+def Bishop_B_2_Clicked ():
+    global First_Bischop_B_2, clicked_square_x, clicked_square_y, move_made
+    k = 0
+    g = 0
+    ClickedX = 0
+    ClickedY = 0
 
-                
-            
+    while ClickedX == 0:
+        if coordsX[k] < x:
+            k += 1
+        else:
+            ClickedX = 1
+            f = coordsX[k-1]
+            l = coordsX[k]
+            if x - f <= l - x:
+                clicked_square_x = k -1
+            else:
+                clicked_square_x = k
+            print (f"bisch 2{coordsX[clicked_square_x]}")
+    
+    while ClickedY == 0:
+        if coordsY[g] < y:
+            g += 1
+        else:
+            ClickedY = 1
+            if y - coordsY[g-1] <= coordsY[g] - y:
+                clicked_square_y = g - 1
+            else:
+                clicked_square_y = g
+            print (coordsY[clicked_square_y])
+    First_Bischop_B_2 = 2
+    move_made = 1
+    draw_board()   
 
 
 
 #function for displaying everything
 def draw_window():
-    global First_Bischop_B_1, First_Bischop_B_2, clicked_square_x, clicked_square_y
+    global First_Bischop_B_1, First_Bischop_B_2, clicked_square_x, clicked_square_y, move_made, Bischop_B_1_x, Bischop_B_1_y, Bischop_B_2_x, Bischop_B_2_y
+
+    if move_made == 1:
+        if First_Bischop_B_1 == 3:
+            win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
+        
+        if First_Bischop_B_2 == 3:
+            win.blit(Bischop_B, (Bischop_B_2_x, Bischop_B_2_y))
+
+
+        move_made = 0
+
 
     if First_Bischop_B_1 == 0:
         lst_Bischop_B_1.append(win.blit(Bischop_B, (coords[2])))
-        First_Bischop_B_1 = 1
+        Bischop_B_1_x, Bischop_B_1_y = coords[2][0], coords[2][1]
     
     if First_Bischop_B_1 == 2:
         lst_Bischop_B_1[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
-        First_Bischop_B_1 = 1
+        Bischop_B_1_x, Bischop_B_1_y = clicked_square_x, clicked_square_y
+        First_Bischop_B_1 = 3
 
 
     if First_Bischop_B_2 == 0:
         lst_Bischop_B_2.append(win.blit(Bischop_B, (coords[5])))
-        First_Bischop_B_2 = 1
-    
+        Bischop_B_2_x, Bischop_B_2_y = coords[5][0], coords[5][1]
+
     if First_Bischop_B_2 == 2:
         lst_Bischop_B_2[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
-        First_Bischop_B_2 = 1
-
+        Bischop_B_2_x, Bischop_B_2_y = clicked_square_x, clicked_square_y
+        First_Bischop_B_2 = 3
 
     
 
     pygame.display.update()
 
 def main():
-    global p, x, y, aantalKliks
+    global p, x, y
+
+    aantalKliks_B_1 = 0
+    aantalKliks_B_2 = 0
 
     #makes the game run at 60 fps so it doesnt use too many computer resources
     clock = pygame.time.Clock()
@@ -177,10 +226,18 @@ def main():
                 # Set the x, y postions of the mouse click
                 x, y = event.pos
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_1):
-                    aantalKliks += 1
-                elif aantalKliks == 1:
-                    aantalKliks = 0
+                    aantalKliks_B_1 += 1
+                    print("Bisch 1")
+                elif aantalKliks_B_1 == 1:
+                    aantalKliks_B_1 = 0
                     Bishop_B_1_Clicked()
+
+                if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_2):
+                    aantalKliks_B_2 += 1
+                    print("Bisch 2")
+                elif aantalKliks_B_2 == 1:
+                    aantalKliks_B_2 = 0
+                    Bishop_B_2_Clicked()
                             
 
         draw_window()
