@@ -46,8 +46,10 @@ list_maker()
 #variables
 cellSize = 80
 FPS = 60
-lst = []
-First_Bischop_B = 0
+lst_Bischop_B_1 = []
+lst_Bischop_B_2 = []
+First_Bischop_B_1 = 0
+First_Bischop_B_2 = 0
 x = 0
 y = 0
 aantalKliks = 0
@@ -91,8 +93,8 @@ def draw_board():
     win.blit(board, (80, 10))
 
 
-def Bishop_B_Clicked ():
-    global First_Bischop_B, clicked_square_x, clicked_square_y
+def Bishop_B_1_Clicked ():
+    global First_Bischop_B_1, clicked_square_x, clicked_square_y
     draw_board()
     k = 0
     g = 0
@@ -124,7 +126,7 @@ def Bishop_B_Clicked ():
             else:
                 clicked_square_y = g
             print (coordsY[clicked_square_y])
-    First_Bischop_B = 2
+    First_Bischop_B_1 = 2
     
     
 
@@ -135,15 +137,26 @@ def Bishop_B_Clicked ():
 
 #function for displaying everything
 def draw_window():
-    global First_Bischop_B, clicked_square_x, clicked_square_y
+    global First_Bischop_B_1, First_Bischop_B_2, clicked_square_x, clicked_square_y
 
-    if First_Bischop_B == 0:
-        lst.append(win.blit(Bischop_B, (coords[2])))
-        First_Bischop_B = 1
+    if First_Bischop_B_1 == 0:
+        lst_Bischop_B_1.append(win.blit(Bischop_B, (coords[2])))
+        First_Bischop_B_1 = 1
     
-    if First_Bischop_B == 2:
-        lst[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
-        First_Bischop_B = 1
+    if First_Bischop_B_1 == 2:
+        lst_Bischop_B_1[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
+        First_Bischop_B_1 = 1
+
+
+    if First_Bischop_B_2 == 0:
+        lst_Bischop_B_2.append(win.blit(Bischop_B, (coords[5])))
+        First_Bischop_B_2 = 1
+    
+    if First_Bischop_B_2 == 2:
+        lst_Bischop_B_2[0] = win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
+        First_Bischop_B_2 = 1
+
+
     
 
     pygame.display.update()
@@ -163,12 +176,11 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP:
                 # Set the x, y postions of the mouse click
                 x, y = event.pos
-                if any(rect.collidepoint(x, y) for rect in lst):
-                    print("gecklickt")
+                if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_1):
                     aantalKliks += 1
                 elif aantalKliks == 1:
                     aantalKliks = 0
-                    Bishop_B_Clicked()
+                    Bishop_B_1_Clicked()
                             
 
         draw_window()
