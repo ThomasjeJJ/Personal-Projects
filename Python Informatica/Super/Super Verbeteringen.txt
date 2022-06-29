@@ -1,7 +1,0 @@
-Database aan het bestand koppelen (Dan ook een reset knop en dat je mischien meerdere bestanden kunt invoeren bij naam.)
-
-zie mock up bestand voor looks
-
-voor de mock up kun je nog vragen of dit save file de goede is en of die verandert moet worden als tussenscherm
-
-
