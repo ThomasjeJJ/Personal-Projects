@@ -30,9 +30,10 @@ Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
 Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
+
 coords = []
-coordsX = [90, 170, 250, 330, 410, 490, 570, 650]
-coordsY = [20, 100, 180, 260, 340, 420, 500, 580]
+coordsX = [90, 170, 250, 330, 410, 490, 570, 650, 9999]
+coordsY = [20, 100, 180, 260, 340, 420, 500, 580, 9999]
 #Function for making the list of coordinates needed for the right placements
 def list_maker():
     for y in range(0, 640, 80):
@@ -76,6 +77,7 @@ win.fill(bg_grey)
 #A nice border around the board
 pygame.draw.rect(win, black, pygame.Rect(73, 3, cellSize * 8 + 14, cellSize * 8 + 14))
 
+
 #Function for drawing the chess board
 def draw_board():
     #loop for moving from row to row
@@ -88,10 +90,12 @@ def draw_board():
         #loop for the moving in the row
         for y in range (1, 8, 2):
             pygame.draw.rect(board, tile_white, (x*cellSize, y*cellSize, 80, 80))
+    win.blit(board, (80, 10))
 
 
 def Bishop_B_Clicked ():
     k = 0
+    g = 0
     ClickedX = 0
     ClickedY = 0
 
@@ -102,29 +106,25 @@ def Bishop_B_Clicked ():
             ClickedX = 1
             f = coordsX[k-1]
             l = coordsX[k]
-            n = x - f
-            m = l - x
-            if n >= m:
+            if x - f <= l - x:
                 clicked_square_x = k -1
             else:
                 clicked_square_x = k
             print (coordsX[clicked_square_x])
     
     while ClickedY == 0:
-        if coordsY[k] < x:
-            k += 1
+        if coordsY[g] < x:
+            g += 1
         else:
             ClickedY = 1
-            f = coordsY[k-1]
-            l = coordsY[k]
-            n = x - f
-            m = l - x
-            if n >= m:
-                clicked_square_y = k -1
+            f = coordsY[g-1]
+            l = coordsY[g]
+            if y - f <= l - y:
+                clicked_square_y = g - 1
             else:
-                clicked_square_y = k
-            print (coordsX[clicked_square_y])
-            win.blit(Bischop_B, (350,350))
+                clicked_square_y = g
+            print (coordsY[clicked_square_y])
+    win.blit(Bischop_B, (coordsX[clicked_square_x],coordsY[clicked_square_y]))
     
     
 
@@ -136,7 +136,6 @@ def Bishop_B_Clicked ():
 #function for displaying everything
 def draw_window():
     global First_Bischop_B
-    win.blit(board, (80, 10))
     
     if First_Bischop_B == 0:
         lst.append(win.blit(Bischop_B, (coords[p])))
