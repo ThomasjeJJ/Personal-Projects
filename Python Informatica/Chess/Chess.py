@@ -20,8 +20,8 @@ pygame.display.set_caption("Chess")
 #Chess pieces
 Bischop_B = pygame.image.load(os.path.join("Chess_Pieces","Bischop_B.png"))
 Bischop_W = pygame.image.load(os.path.join("Chess_Pieces","Bischop_W.png"))
-Horse_B = pygame.image.load(os.path.join("Chess_Pieces","Horse_B.png"))
-Horse_W = pygame.image.load(os.path.join("Chess_Pieces","Horse_W.png"))
+Queen_B = pygame.image.load(os.path.join("Chess_Pieces","Queen_B.png"))
+Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
 King_B = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
 King_W = pygame.image.load(os.path.join("Chess_Pieces","King_W.png"))
 Pawn_B = pygame.image.load(os.path.join("Chess_Pieces","Pawn_B.png"))
@@ -31,12 +31,12 @@ Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
 Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
-
+#list of coordinates for the position of the pieces
 coords = []
 coordsX = [90, 170, 250, 330, 410, 490, 570, 650, 999, 90]
 coordsY = [20, 100, 180, 260, 340, 420, 500, 580, 999, 20]
-#coordsX_Click = [130, 210, 290, 370, 450, 540, 610, 690, 999]
-#coordsY_Click = [60, 140, 220, 300, 3480, 460, 540, 620, 999]
+
+
 #Function for making the list of coordinates needed for the right placements
 def list_maker():
     for y in range(0, 640, 80):
@@ -61,16 +61,135 @@ lst_Bischop_B_2 = []
 lst_Bischop_W_1 = []
 lst_Bischop_W_2 = []
 
+lst_Queen_B_1 = []
+lst_Queen_B_2 = []
+lst_Queen_W_1 = []
+lst_Queen_W_2 = []
+
+lst_Rook_B_1 = []
+lst_Rook_B_2 = []
+lst_Rook_W_1 = []
+lst_Rook_W_2 = []
+
+lst_King_B = []
+lst_King_W = []
+
+lst_Queen_B = []
+lst_Queen_W = []
+
+lst_Pawn_B_1 = []
+lst_Pawn_B_2 = []
+lst_Pawn_B_3 = []
+lst_Pawn_B_4 = []
+lst_Pawn_B_5 = []
+lst_Pawn_B_6 = []
+lst_Pawn_B_7 = []
+lst_Pawn_B_8 = []
+
+lst_Pawn_W_1 = []
+lst_Pawn_W_2 = []
+lst_Pawn_W_3 = []
+lst_Pawn_W_4 = []
+lst_Pawn_W_5 = []
+lst_Pawn_W_6 = []
+lst_Pawn_W_7 = []
+lst_Pawn_W_8 = []
+
+
 
 First_Bischop_B_1, First_Bischop_B_2 = 0, 0
 Captured_Bischop_B_1, Captured_Bischop_B_2 = 0, 0
-First_Bischop_W_1, First_Bischop_W_2 = 0, 0
-
-
 Bischop_B_1_x, Bischop_B_1_y = 0, 0
 Bischop_B_2_x, Bischop_B_2_y = 0, 0
+
+First_Bischop_W_1, First_Bischop_W_2 = 0, 0
+Captured_Bischop_W_1, Captured_Bischop_W_2 = 0, 0
 Bischop_W_1_x, Bischop_W_1_y = 0, 0
 Bischop_W_2_x, Bischop_W_2_y = 0, 0
+#-----------------------------------------------
+First_Queen_B_1, First_Queen_B_2 = 0, 0
+Captured_Queen_B_1, Captured_Queen_B_2 = 0, 0
+Queen_B_1_x, Queen_B_1_y = 0, 0
+Queen_B_2_x, Queen_B_2_y = 0, 0
+
+First_Queen_W_1, First_Queen_W_2 = 0, 0
+Captured_Queen_W_1, Captured_Queen_W_2 = 0, 0
+Queen_W_1_x, Queen_W_1_y = 0, 0
+Queen_W_2_x, Queen_W_2_y = 0, 0
+#-----------------------------------------------
+First_Rook_B_1, First_Rook_B_2 = 0, 0
+Captured_Rook_B_1, Captured_Rook_B_2 = 0, 0
+Rook_B_1_x, Rook_B_1_y = 0, 0
+Rook_B_2_x, Rook_B_2_y = 0, 0
+
+First_Rook_W_1, First_Rook_W_2 = 0, 0
+Captured_Rook_W_1, Captured_Rook_W_2 = 0, 0
+Rook_W_1_x, Rook_W_1_y = 0, 0
+Rook_W_2_x, Rook_W_2_y = 0, 0
+#-----------------------------------------------
+First_King_B= 0
+Captured_King_B = 0
+King_B_x, King_B_y = 0, 0
+
+First_King_W = 0
+Captured_King_W_1 = 0
+King_W_x, King_W_y = 0, 0
+#-----------------------------------------------
+First_Queen_B= 0
+Captured_Queen_B = 0
+Queen_B_x, Queen_B_y = 0, 0
+
+First_Queen_W = 0
+Captured_Queen_W_1 = 0
+Queen_W_x, Queen_W_y = 0, 0
+#-----------------------------------------------
+#Pawns
+#-----------------------------------------------
+First_Rook_B_1, First_Rook_B_2 = 0, 0
+Captured_Rook_B_1, Captured_Rook_B_2 = 0, 0
+Rook_B_1_x, Rook_B_1_y = 0, 0
+Rook_B_2_x, Rook_B_2_y = 0, 0
+
+First_Rook_W_1, First_Rook_W_2 = 0, 0
+Captured_Rook_W_1, Captured_Rook_W_2 = 0, 0
+Rook_W_1_x, Rook_W_1_y = 0, 0
+Rook_W_2_x, Rook_W_2_y = 0, 0
+
+First_Rook_B_3, First_Rook_B_4 = 0, 0
+Captured_Rook_B_3, Captured_Rook_B_4 = 0, 0
+Rook_B_3_x, Rook_B_3_y = 0, 0
+Rook_B_4_x, Rook_B_4_y = 0, 0
+
+First_Rook_W_3, First_Rook_W_4 = 0, 0
+Captured_Rook_W_3, Captured_Rook_W_4 = 0, 0
+Rook_W_3_x, Rook_W_3_y = 0, 0
+Rook_W_4_x, Rook_W_4_y = 0, 0
+
+First_Rook_B_5, First_Rook_B_6 = 0, 0
+Captured_Rook_B_5, Captured_Rook_B_6 = 0, 0
+Rook_B_5_x, Rook_B_5_y = 0, 0
+Rook_B_6_x, Rook_B_6_y = 0, 0
+
+First_Rook_W_5, First_Rook_W_6 = 0, 0
+Captured_Rook_W_5, Captured_Rook_W_6 = 0, 0
+Rook_W_5_x, Rook_W_5_y = 0, 0
+Rook_W_6_x, Rook_W_6_y = 0, 0
+
+First_Rook_B_7, First_Rook_B_8 = 0, 0
+Captured_Rook_B_7, Captured_Rook_B_8 = 0, 0
+Rook_B_7_x, Rook_B_7_y = 0, 0
+Rook_B_8_x, Rook_B_8_y = 0, 0
+
+First_Rook_W_7, First_Rook_W_8 = 0, 0
+Captured_Rook_W_7, Captured_Rook_W_8 = 0, 0
+Rook_W_7_x, Rook_W_7_y = 0, 0
+Rook_W_8_x, Rook_W_8_y = 0, 0
+#-----------------------------------------------
+
+
+
+
+
 
 
 # Colors
@@ -109,6 +228,8 @@ def draw_board():
 
 def Clicked ():
     global clicked_square_x, clicked_square_y, move_made
+    global Captured_Bischop_B_1
+
     k = 0
     g = 0
     ClickedX = 0
@@ -135,6 +256,9 @@ def Clicked ():
             else:
                 clicked_square_y = coordsY[g] 
 
+    if Bischop_B_1_x == clicked_square_x and Bischop_B_1_y == clicked_square_y:
+        Captured_Bischop_B_1 = 1
+
 #function for displaying everything
 def draw_window():
     global clicked_square_x, clicked_square_y, move_made
@@ -143,13 +267,11 @@ def draw_window():
 
 
     if move_made == 1:
+
         if First_Bischop_B_1 == 3 and Captured_Bischop_B_1 == 0:
-            if (Bischop_B_1_x, Bischop_B_1_y) == (clicked_square_x, clicked_square_y):
-                Captured_Bischop_B_1 = 1
-                win.blit(Bischop_B, (1000, 0))
-            else:
-                win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
-                First_Bischop_B_1 = 3
+            win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
+        else:
+            win.blit(Bischop_B, (1000, 0))
         
         if First_Bischop_B_2 == 3:
             win.blit(Bischop_B, (Bischop_B_2_x, Bischop_B_2_y))
@@ -169,7 +291,6 @@ def draw_window():
     
     if First_Bischop_B_1 == 2:
         lst_Bischop_B_1[0] = win.blit(Bischop_B, (clicked_square_x, clicked_square_y))
-        print(clicked_square_x, clicked_square_y)
         Bischop_B_1_x, Bischop_B_1_y = clicked_square_x, clicked_square_y
 
 
@@ -189,7 +310,6 @@ def draw_window():
     
     if First_Bischop_W_1 == 2:
         lst_Bischop_W_1[0] = win.blit(Bischop_W, (clicked_square_x, clicked_square_y))
-        print(clicked_square_x, clicked_square_y)
         Bischop_W_1_x, Bischop_W_1_y = clicked_square_x, clicked_square_y
 
 
@@ -202,7 +322,7 @@ def draw_window():
         lst_Bischop_W_2[0] = win.blit(Bischop_W, (clicked_square_x, clicked_square_y))
         Bischop_W_2_x, Bischop_W_2_y = clicked_square_x, clicked_square_y
 
-    
+    First_Bischop_B_1 = 3
     First_Bischop_B_2 = 3
     First_Bischop_W_1 = 3
     First_Bischop_W_2 = 3
@@ -232,7 +352,6 @@ def main():
                 x, y = event.pos
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_1):
                     aantalKliks_B_1 += 1
-                    print("Bisch 1")
                 elif aantalKliks_B_1 == 1:
                     aantalKliks_B_1 = 0
                     Clicked()
@@ -243,7 +362,6 @@ def main():
 
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_2):
                     aantalKliks_B_2 += 1
-                    print("Bisch 2")
                 elif aantalKliks_B_2 == 1:
                     aantalKliks_B_2 = 0
                     Clicked()
@@ -253,7 +371,6 @@ def main():
 #----------------
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_1):
                     aantalKliks_W_1 += 1
-                    print("Bisch 1")
                 elif aantalKliks_W_1 == 1:
                     aantalKliks_W_1 = 0
                     Clicked()
@@ -263,7 +380,6 @@ def main():
 
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_2):
                     aantalKliks_W_2 += 1
-                    print("Bisch 2")
                 elif aantalKliks_W_2 == 1:
                     aantalKliks_W_2 = 0
                     Clicked()
