@@ -20,14 +20,16 @@ pygame.display.set_caption("Chess")
 #Chess pieces
 Bischop_B = pygame.image.load(os.path.join("Chess_Pieces","Bischop_B.png"))
 Bischop_W = pygame.image.load(os.path.join("Chess_Pieces","Bischop_W.png"))
-Queen_B = pygame.image.load(os.path.join("Chess_Pieces","Queen_B.png"))
-Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
+Horse_B = pygame.image.load(os.path.join("Chess_Pieces","Horse_B.png"))
+Horse_W = pygame.image.load(os.path.join("Chess_Pieces","Horse_W.png"))
 King_B = pygame.image.load(os.path.join("Chess_Pieces","King_B.png"))
 King_W = pygame.image.load(os.path.join("Chess_Pieces","King_W.png"))
-Pawn_B = pygame.image.load(os.path.join("Chess_Pieces","Pawn_B.png"))
-Pawn_W = pygame.image.load(os.path.join("Chess_Pieces","Pawn_W.png"))
 Queen_B = pygame.image.load(os.path.join("Chess_Pieces","Queen_B.png"))
 Queen_W = pygame.image.load(os.path.join("Chess_Pieces","Queen_W.png"))
+Pawn_B = pygame.image.load(os.path.join("Chess_Pieces","Pawn_B.png"))
+Pawn_W = pygame.image.load(os.path.join("Chess_Pieces","Pawn_W.png"))
+Horse_B = pygame.image.load(os.path.join("Chess_Pieces","Horse_B.png"))
+Horse_W = pygame.image.load(os.path.join("Chess_Pieces","Horse_W.png"))
 Rook_B = pygame.image.load(os.path.join("Chess_Pieces","Rook_B.png"))
 Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
@@ -61,10 +63,10 @@ lst_Bischop_B_2 = []
 lst_Bischop_W_1 = []
 lst_Bischop_W_2 = []
 
-lst_Queen_B_1 = []
-lst_Queen_B_2 = []
-lst_Queen_W_1 = []
-lst_Queen_W_2 = []
+lst_Horse_B_1 = []
+lst_Horse_B_2 = []
+lst_Horse_W_1 = []
+lst_Horse_W_2 = []
 
 lst_Rook_B_1 = []
 lst_Rook_B_2 = []
@@ -74,8 +76,8 @@ lst_Rook_W_2 = []
 lst_King_B = []
 lst_King_W = []
 
-lst_Queen_B = []
-lst_Queen_W = []
+lst_Horse_B = []
+lst_Horse_W = []
 
 lst_Pawn_B_1 = []
 lst_Pawn_B_2 = []
@@ -107,15 +109,15 @@ Captured_Bischop_W_1, Captured_Bischop_W_2 = 0, 0
 Bischop_W_1_x, Bischop_W_1_y = 0, 0
 Bischop_W_2_x, Bischop_W_2_y = 0, 0
 #-----------------------------------------------
-First_Queen_B_1, First_Queen_B_2 = 0, 0
-Captured_Queen_B_1, Captured_Queen_B_2 = 0, 0
-Queen_B_1_x, Queen_B_1_y = 0, 0
-Queen_B_2_x, Queen_B_2_y = 0, 0
+First_Horse_B_1, First_Horse_B_2 = 0, 0
+Captured_Horse_B_1, Captured_Horse_B_2 = 0, 0
+Horse_B_1_x, Horse_B_1_y = 0, 0
+Horse_B_2_x, Horse_B_2_y = 0, 0
 
-First_Queen_W_1, First_Queen_W_2 = 0, 0
-Captured_Queen_W_1, Captured_Queen_W_2 = 0, 0
-Queen_W_1_x, Queen_W_1_y = 0, 0
-Queen_W_2_x, Queen_W_2_y = 0, 0
+First_Horse_W_1, First_Horse_W_2 = 0, 0
+Captured_Horse_W_1, Captured_Horse_W_2 = 0, 0
+Horse_W_1_x, Horse_W_1_y = 0, 0
+Horse_W_2_x, Horse_W_2_y = 0, 0
 #-----------------------------------------------
 First_Rook_B_1, First_Rook_B_2 = 0, 0
 Captured_Rook_B_1, Captured_Rook_B_2 = 0, 0
@@ -143,52 +145,46 @@ First_Queen_W = 0
 Captured_Queen_W_1 = 0
 Queen_W_x, Queen_W_y = 0, 0
 #-----------------------------------------------
-#Pawns
+First_Pawn_B_1, First_Pawn_B_2 = 0, 0
+Captured_Pawn_B_1, Captured_Pawn_B_2 = 0, 0
+Pawn_B_1_x, Pawn_B_1_y = 0, 0
+Pawn_B_2_x, Pawn_B_2_y = 0, 0
+
+First_Pawn_W_1, First_Pawn_W_2 = 0, 0
+Captured_Pawn_W_1, Captured_Pawn_W_2 = 0, 0
+Pawn_W_1_x, Pawn_W_1_y = 0, 0
+Pawn_W_2_x, Pawn_W_2_y = 0, 0
+
+First_Pawn_B_3, First_Pawn_B_4 = 0, 0
+Captured_Pawn_B_3, Captured_Pawn_B_4 = 0, 0
+Pawn_B_3_x, Pawn_B_3_y = 0, 0
+Pawn_B_4_x, Pawn_B_4_y = 0, 0
+
+First_Pawn_W_3, First_Pawn_W_4 = 0, 0
+Captured_Pawn_W_3, Captured_Pawn_W_4 = 0, 0
+Pawn_W_3_x, Pawn_W_3_y = 0, 0
+Pawn_W_4_x, Pawn_W_4_y = 0, 0
+
+First_Pawn_B_5, First_Pawn_B_6 = 0, 0
+Captured_Pawn_B_5, Captured_Pawn_B_6 = 0, 0
+Pawn_B_5_x, Pawn_B_5_y = 0, 0
+Pawn_B_6_x, Pawn_B_6_y = 0, 0
+
+First_Pawn_W_5, First_Pawn_W_6 = 0, 0
+Captured_Pawn_W_5, Captured_Pawn_W_6 = 0, 0
+Pawn_W_5_x, Pawn_W_5_y = 0, 0
+Pawn_W_6_x, Pawn_W_6_y = 0, 0
+
+First_Pawn_B_7, First_Pawn_B_8 = 0, 0
+Captured_Pawn_B_7, Captured_Pawn_B_8 = 0, 0
+Pawn_B_7_x, Pawn_B_7_y = 0, 0
+Pawn_B_8_x, Pawn_B_8_y = 0, 0
+
+First_Pawn_W_7, First_Pawn_W_8 = 0, 0
+Captured_Pawn_W_7, Captured_Pawn_W_8 = 0, 0
+Pawn_W_7_x, Pawn_W_7_y = 0, 0
+Pawn_W_8_x, Pawn_W_8_y = 0, 0
 #-----------------------------------------------
-First_Rook_B_1, First_Rook_B_2 = 0, 0
-Captured_Rook_B_1, Captured_Rook_B_2 = 0, 0
-Rook_B_1_x, Rook_B_1_y = 0, 0
-Rook_B_2_x, Rook_B_2_y = 0, 0
-
-First_Rook_W_1, First_Rook_W_2 = 0, 0
-Captured_Rook_W_1, Captured_Rook_W_2 = 0, 0
-Rook_W_1_x, Rook_W_1_y = 0, 0
-Rook_W_2_x, Rook_W_2_y = 0, 0
-
-First_Rook_B_3, First_Rook_B_4 = 0, 0
-Captured_Rook_B_3, Captured_Rook_B_4 = 0, 0
-Rook_B_3_x, Rook_B_3_y = 0, 0
-Rook_B_4_x, Rook_B_4_y = 0, 0
-
-First_Rook_W_3, First_Rook_W_4 = 0, 0
-Captured_Rook_W_3, Captured_Rook_W_4 = 0, 0
-Rook_W_3_x, Rook_W_3_y = 0, 0
-Rook_W_4_x, Rook_W_4_y = 0, 0
-
-First_Rook_B_5, First_Rook_B_6 = 0, 0
-Captured_Rook_B_5, Captured_Rook_B_6 = 0, 0
-Rook_B_5_x, Rook_B_5_y = 0, 0
-Rook_B_6_x, Rook_B_6_y = 0, 0
-
-First_Rook_W_5, First_Rook_W_6 = 0, 0
-Captured_Rook_W_5, Captured_Rook_W_6 = 0, 0
-Rook_W_5_x, Rook_W_5_y = 0, 0
-Rook_W_6_x, Rook_W_6_y = 0, 0
-
-First_Rook_B_7, First_Rook_B_8 = 0, 0
-Captured_Rook_B_7, Captured_Rook_B_8 = 0, 0
-Rook_B_7_x, Rook_B_7_y = 0, 0
-Rook_B_8_x, Rook_B_8_y = 0, 0
-
-First_Rook_W_7, First_Rook_W_8 = 0, 0
-Captured_Rook_W_7, Captured_Rook_W_8 = 0, 0
-Rook_W_7_x, Rook_W_7_y = 0, 0
-Rook_W_8_x, Rook_W_8_y = 0, 0
-#-----------------------------------------------
-
-
-
-
 
 
 
@@ -228,7 +224,8 @@ def draw_board():
 
 def Clicked ():
     global clicked_square_x, clicked_square_y, move_made
-    global Captured_Bischop_B_1
+    global Captured_Bischop_B_1, Captured_Bischop_B_2, Captured_Bischop_W_1, Captured_Bischop_W_2
+    global Captured_Horse_B_1, Captured_Horse_B_2, Captured_Horse_W_1, Captured_Horse_W_2
 
     k = 0
     g = 0
@@ -259,11 +256,29 @@ def Clicked ():
     if Bischop_B_1_x == clicked_square_x and Bischop_B_1_y == clicked_square_y:
         Captured_Bischop_B_1 = 1
 
+    if Bischop_B_2_x == clicked_square_x and Bischop_B_2_y == clicked_square_y:
+        Captured_Bischop_B_2 = 1
+
 #function for displaying everything
 def draw_window():
     global clicked_square_x, clicked_square_y, move_made
+    
     global Bischop_B_1_x, Bischop_B_1_y, Bischop_B_2_x, Bischop_B_2_y, First_Bischop_B_1, First_Bischop_B_2
+    global Horse_B_1_x, Horse_B_1_y, Horse_B_2_x, Horse_B_2_y, First_Horse_B_1, First_Horse_B_2
+    global Rook_B_1_x, Rook_B_1_y, Rook_B_2_x, Rook_B_2_y, First_Rook_B_1, First_Rook_B_2
+    global King_B_x, King_B_y, First_King_B
+    global Queen_B_x, Queen_B_y, First_Queen_B
+    global Pawn_B_1_x, Pawn_B_1_y, Pawn_B_2_x, Pawn_B_2_y, Pawn_B_3_x, Pawn_B_3_y, Pawn_B_4_x, Pawn_B_4_y, Pawn_B_5_x, Pawn_B_5_y, Pawn_B_6_x, Pawn_B_6_y, Pawn_B_7_x, Pawn_B_7_y, Pawn_B_8_x, Pawn_B_8_y
+    global First_Pawn_B_1, First_Pawn_B_2, First_Pawn_B_3, First_Pawn_B_4, First_Pawn_B_5, First_Pawn_B_6, First_Pawn_B_7, First_Pawn_B_8
+
     global Bischop_W_1_x, Bischop_W_1_y, Bischop_W_2_x, Bischop_W_2_y, First_Bischop_W_1, First_Bischop_W_2
+    global Horse_W_1_x, Horse_W_1_y, Horse_W_2_x, Horse_W_2_y, First_Horse_W_1, First_Horse_W_2
+    global Rook_W_1_x, Rook_W_1_y, Rook_W_2_x, Rook_W_2_y, First_Rook_W_1, First_Rook_W_2
+    global King_W_x, King_W_y, First_King_W
+    global Queen_W_x, Queen_W_y, First_Queen_W
+    global Pawn_W_1_x, Pawn_W_1_y, Pawn_W_2_x, Pawn_W_2_y, Pawn_W_3_x, Pawn_W_3_y, Pawn_W_4_x, Pawn_W_4_y, Pawn_W_5_x, Pawn_W_5_y, Pawn_W_6_x, Pawn_W_6_y, Pawn_W_7_x, Pawn_W_7_y, Pawn_W_8_x, Pawn_W_8_y
+    global First_Pawn_W_1, First_Pawn_W_2, First_Pawn_W_3, First_Pawn_W_4, First_Pawn_W_5, First_Pawn_W_6, First_Pawn_W_7, First_Pawn_W_8
+
 
 
     if move_made == 1:
@@ -273,16 +288,44 @@ def draw_window():
         else:
             win.blit(Bischop_B, (1000, 0))
         
-        if First_Bischop_B_2 == 3:
+        if First_Bischop_B_2 == 3 and Captured_Bischop_B_2 == 0:
             win.blit(Bischop_B, (Bischop_B_2_x, Bischop_B_2_y))
-
-        if First_Bischop_W_1 == 3:
-            win.blit(Bischop_W, (Bischop_W_1_x, Bischop_W_1_y))
+        else:
+            win.blit(Bischop_B, (1000, 0))
+#--------------
+        if First_Horse_B_1 == 3 and Captured_Horse_B_1 == 0:
+            win.blit(Horse_B, (Horse_B_1_x, Horse_B_1_y))
+        else:
+            win.blit(Horse_B, (1000, 0))
         
-        if First_Bischop_W_2 == 3:
-            win.blit(Bischop_W, (Bischop_W_2_x, Bischop_W_2_y))
+        if First_Horse_B_2 == 3 and Captured_Horse_B_2 == 0:
+            win.blit(Horse_B, (Horse_B_2_x, Horse_B_2_y))
+        else:
+            win.blit(Horse_B, (1000, 0))
+#--------------
+        if First_Rook_B_1 == 3 and Captured_Rook_B_1 == 0:
+            win.blit(Rook_B, (Rook_B_1_x, Rook_B_1_y))
+        else:
+            win.blit(Rook_B, (1000, 0))
+        
+        if First_Rook_B_2 == 3 and Captured_Rook_B_2 == 0:
+            win.blit(Rook_B, (Rook_B_2_x, Rook_B_2_y))
+        else:
+            win.blit(Rook_B, (1000, 0))
+#--------------
+        if First_King_B == 3 and Captured_King_B == 0:
+            win.blit(King_B, (King_B_x, King_B_y))
+        else:
+            win.blit(King_B, (1000, 0))
+#--------------
+        if First_Queen_B == 3 and Captured_Queen_B == 0:
+            win.blit(Queen_B, (Queen_B_x, Queen_B_y))
+        else:
+            win.blit(Queen_B, (1000, 0))
+#--------------
 
-    move_made = 0
+
+
 
 
     if First_Bischop_B_1 == 0:
@@ -324,8 +367,9 @@ def draw_window():
 
     First_Bischop_B_1 = 3
     First_Bischop_B_2 = 3
-    First_Bischop_W_1 = 3
-    First_Bischop_W_2 = 3
+    
+    
+    move_made = 0
 
     pygame.display.update()
 
