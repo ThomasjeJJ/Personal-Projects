@@ -1004,7 +1004,7 @@ def main():
                     aantalKliksPawn_B_3 = 0
                     Clicked()
                     First_Pawn_B_3 = 2
-                    move_made = 3
+                    move_made = 1
                     draw_board()
                     
                 if any(rect.collidepoint(x, y) for rect in lst_Pawn_B_4):
@@ -1152,7 +1152,7 @@ def main():
                     aantalKliksPawn_W_3 = 0
                     Clicked()
                     First_Pawn_W_3 = 2
-                    move_made = 3
+                    move_made = 1
                     draw_board()
                     
                 if any(rect.collidepoint(x, y) for rect in lst_Pawn_W_4):
