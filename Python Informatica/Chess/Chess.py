@@ -33,15 +33,15 @@ Rook_W = pygame.image.load(os.path.join("Chess_Pieces","Rook_W.png"))
 
 
 coords = []
-coordsX = [90, 170, 250, 330, 410, 490, 570, 650, 9999]
-coordsY = [20, 100, 180, 260, 340, 420, 500, 580, 9999]
+coordsX = [90, 170, 250, 330, 410, 490, 570, 650, 999, 90]
+coordsY = [20, 100, 180, 260, 340, 420, 500, 580, 999, 20]
+#coordsX_Click = [130, 210, 290, 370, 450, 540, 610, 690, 999]
+#coordsY_Click = [60, 140, 220, 300, 3480, 460, 540, 620, 999]
 #Function for making the list of coordinates needed for the right placements
 def list_maker():
     for y in range(0, 640, 80):
         for x in range(0, 640, 80):
             coords.append((90+x, 20+y))
-
-
 list_maker()
 
 #variables
@@ -106,134 +106,33 @@ def draw_board():
     win.blit(board, (80, 10))
 
 
-def Bishop_B_1_Clicked ():
-    global First_Bischop_B_1, clicked_square_x, clicked_square_y, move_made
+def Clicked ():
+    global clicked_square_x, clicked_square_y, move_made
     k = 0
     g = 0
     ClickedX = 0
     ClickedY = 0
 
     while ClickedX == 0:
-        if coordsX[k] < x:
+        if 40 + coordsX[k] < x:
             k += 1
         else:
             ClickedX = 1
-            if x - coordsX[k-1] <= coordsX[k] - x:
+            if x - (40 + coordsX[k-1]) <= (40 + coordsX[k]) - x:
                 clicked_square_x = coordsX[k-1]
             else:
                 clicked_square_x = coordsX[k]
 
     
     while ClickedY == 0:
-        if coordsY[g] < y:
+        if 40 + coordsY[g] < y:
             g += 1
         else:
             ClickedY = 1
-            if y - coordsY[g-1] <= coordsY[g] - y:
+            if y - (40 + coordsY[g-1]) <= (40 + coordsY[g]) - y:
                 clicked_square_y = coordsY[g-1]
             else:
-                clicked_square_y = coordsY[g]
-        
-
-    First_Bischop_B_1 = 2
-    move_made = 1
-    draw_board()
-    
-def Bishop_B_2_Clicked ():
-    global First_Bischop_B_2, clicked_square_x, clicked_square_y, move_made
-    k = 0
-    g = 0
-    ClickedX = 0
-    ClickedY = 0
-
-    while ClickedX == 0:
-        if coordsX[k] < x:
-            k += 1
-        else:
-            ClickedX = 1
-            if x - coordsX[k-1] <= coordsX[k] - x:
-                clicked_square_x = coordsX[k-1]
-            else:
-                clicked_square_x = coordsX[k]
-    
-    while ClickedY == 0:
-        if coordsY[g] < y:
-            g += 1
-        else:
-            ClickedY = 1
-            if y - coordsY[g-1] <= coordsY[g] - y:
-                clicked_square_y = coordsY[g-1]
-            else:
-                clicked_square_y = coordsY[g]
-    First_Bischop_B_2 = 2
-    move_made = 1
-    draw_board()   
-
-def Bishop_W_1_Clicked ():
-    global First_Bischop_W_1, clicked_square_x, clicked_square_y, move_made
-    k = 0
-    g = 0
-    ClickedX = 0
-    ClickedY = 0
-
-    while ClickedX == 0:
-        if coordsX[k] < x:
-            k += 1
-        else:
-            ClickedX = 1
-            if x - coordsX[k-1] <= coordsX[k] - x:
-                clicked_square_x = coordsX[k-1]
-            else:
-                clicked_square_x = coordsX[k]
-
-    
-    while ClickedY == 0:
-        if coordsY[g] < y:
-            g += 1
-        else:
-            ClickedY = 1
-            if y - coordsY[g-1] <= coordsY[g] - y:
-                clicked_square_y = coordsY[g-1]
-            else:
-                clicked_square_y = coordsY[g]
-        
-
-    First_Bischop_W_1 = 2
-    move_made = 1
-    draw_board()
-
-def Bishop_W_2_Clicked ():
-    global First_Bischop_W_2, clicked_square_x, clicked_square_y, move_made
-    k = 0
-    g = 0
-    ClickedX = 0
-    ClickedY = 0
-
-    while ClickedX == 0:
-        if coordsX[k] < x:
-            k += 1
-        else:
-            ClickedX = 1
-            if x - coordsX[k-1] <= coordsX[k] - x:
-                clicked_square_x = coordsX[k-1]
-            else:
-                clicked_square_x = coordsX[k]
-
-    
-    while ClickedY == 0:
-        if coordsY[g] < y:
-            g += 1
-        else:
-            ClickedY = 1
-            if y - coordsY[g-1] <= coordsY[g] - y:
-                clicked_square_y = coordsY[g-1]
-            else:
-                clicked_square_y = coordsY[g]
-        
-
-    First_Bischop_W_2 = 2
-    move_made = 1
-    draw_board()
+                clicked_square_y = coordsY[g] 
 
 #function for displaying everything
 def draw_window():
@@ -244,7 +143,12 @@ def draw_window():
 
     if move_made == 1:
         if First_Bischop_B_1 == 3:
-            win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
+            if (Bischop_B_1_x, Bischop_B_1_y) == (clicked_square_x, clicked_square_y):
+                First_Bischop_B_1 = 4
+                win.blit(Bischop_B, (1000, 0))
+            else:
+                win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
+                First_Bischop_B_1 = 3
         
         if First_Bischop_B_2 == 3:
             win.blit(Bischop_B, (Bischop_B_2_x, Bischop_B_2_y))
@@ -297,7 +201,7 @@ def draw_window():
         lst_Bischop_W_2[0] = win.blit(Bischop_W, (clicked_square_x, clicked_square_y))
         Bischop_W_2_x, Bischop_W_2_y = clicked_square_x, clicked_square_y
 
-    First_Bischop_B_1 = 3
+    
     First_Bischop_B_2 = 3
     First_Bischop_W_1 = 3
     First_Bischop_W_2 = 3
@@ -305,7 +209,8 @@ def draw_window():
     pygame.display.update()
 
 def main():
-    global p, x, y
+    global p, x, y, move_made
+    global First_Bischop_B_1, First_Bischop_B_2, First_Bischop_W_1, First_Bischop_W_2
 
     aantalKliks_B_1 = 0
     aantalKliks_B_2 = 0
@@ -329,35 +234,45 @@ def main():
                     print("Bisch 1")
                 elif aantalKliks_B_1 == 1:
                     aantalKliks_B_1 = 0
-                    Bishop_B_1_Clicked()
+                    Clicked()
+                    First_Bischop_B_1 = 2
+                    move_made = 1
+                    draw_board()
+                    
 
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_B_2):
                     aantalKliks_B_2 += 1
                     print("Bisch 2")
                 elif aantalKliks_B_2 == 1:
                     aantalKliks_B_2 = 0
-                    Bishop_B_2_Clicked()
+                    Clicked()
+                    First_Bischop_B_2 = 2
+                    move_made = 1
+                    draw_board()
 #----------------
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_1):
                     aantalKliks_W_1 += 1
                     print("Bisch 1")
                 elif aantalKliks_W_1 == 1:
                     aantalKliks_W_1 = 0
-                    Bishop_W_1_Clicked()
+                    Clicked()
+                    First_Bischop_W_1 = 2
+                    move_made = 1
+                    draw_board()
 
                 if any(rect.collidepoint(x, y) for rect in lst_Bischop_W_2):
                     aantalKliks_W_2 += 1
                     print("Bisch 2")
                 elif aantalKliks_W_2 == 1:
                     aantalKliks_W_2 = 0
-                    Bishop_W_2_Clicked()       
+                    Clicked()
+                    First_Bischop_W_2 = 2
+                    move_made = 1
+                    draw_board()       
 
         draw_window()
 
     pygame.quit()
-
-
-
 
 draw_board()
 main()
