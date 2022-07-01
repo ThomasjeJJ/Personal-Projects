@@ -63,6 +63,7 @@ lst_Bischop_W_2 = []
 
 
 First_Bischop_B_1, First_Bischop_B_2 = 0, 0
+Captured_Bischop_B_1, Captured_Bischop_B_2 = 0, 0
 First_Bischop_W_1, First_Bischop_W_2 = 0, 0
 
 
@@ -142,9 +143,9 @@ def draw_window():
 
 
     if move_made == 1:
-        if First_Bischop_B_1 == 3:
+        if First_Bischop_B_1 == 3 and Captured_Bischop_B_1 == 0:
             if (Bischop_B_1_x, Bischop_B_1_y) == (clicked_square_x, clicked_square_y):
-                First_Bischop_B_1 = 4
+                Captured_Bischop_B_1 = 1
                 win.blit(Bischop_B, (1000, 0))
             else:
                 win.blit(Bischop_B, (Bischop_B_1_x, Bischop_B_1_y))
