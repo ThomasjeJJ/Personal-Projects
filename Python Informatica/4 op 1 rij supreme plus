@@ -1,0 +1,3 @@
+from guizero import app, waffle
+
+print("test")
