@@ -1,7 +1,0 @@
-Super Uitleg:
-
-Super is een kaartspel met een vrij ingewikkeld punten systeem
-Het lijkt een beetje op rumikub.
-De "gebroken" kaart die aan het begin van het spel word bepaald, bepaald hoevaak je de rest van de punten moet verminigvuldigen.
-Ook zijn er nog uitzonderingen als je op een speciale manier uitlegt wat weer voor meer moeilijkheden zorgt als je de punten moet gaan tellen.
-Om dit allemaal makkelijk te maken heb ik dit programma geschreven.
